@@ -27,7 +27,7 @@ def is_partial_fuzzy_match(partial_str, full_str):
     if partial_str in full_str:
         return True
 
-    max_error = len(partial_str) // 8 + 1
+    max_error = len(partial_str) // 8 + 1 if len(partial_str) > 1 else 0
     for i in range(max(0, len(full_str) - len(partial_str) - max_error) + 1):
         window_str = full_str[i:i + len(partial_str) + max_error]
         score = damerau_levenshtein_distance(partial_str, window_str)
